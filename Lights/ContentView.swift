@@ -1,29 +1,38 @@
 //
-//  ContentView.swift
+//  TabView.swift
 //  Lights
 //
-//  Created by Shannah Santucci on 16.10.21.
+//  Created by Shannah Santucci on 23.10.21.
 //
 
 import SwiftUI
 
 struct ContentView: View {
-    @State var data: LightData
     var body: some View {
-        VStack {
-            Text("Light Controller")
-                .padding()
-                .font(.title)
-                .foregroundColor(.orange)
-
-            CursorView(data: $data)
-            MenuView(data: $data)
-        }
+        TabView {
+            FaderView(data: LightData(intensity: 0.5))
+                .tabItem {
+                    Image(systemName: "face.smiling.fill")
+                    Text("Fade")
+                }.tag(1)
+            
+            MessageView(data: MessageData())
+                .tabItem {
+                    Image(systemName: "wave.3.right.circle.fill")
+                    Text("Send")
+                }.tag(2)
+            
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gearshape.circle.fill")
+                    Text("Set")
+                }.tag(3)
+        }.font(.headline)
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct TabView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(data: LightData(intensity: 0.5))
+        ContentView()
     }
 }

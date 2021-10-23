@@ -17,14 +17,6 @@ struct CursorView: View {
             Text(String(format: "%.0f", data.intensity*100))
                 .font(.headline)
                 .foregroundColor(data.isEditing ? .orange.opacity(0.7) : .orange)
-            /*Slider(
-                value: $intensity,
-                in: 0...1,
-                onEditingChanged: { editing in
-                    isEditing = editing
-                }
-                
-            )*/
             ZStack() {
                 RoundedRectangle(cornerRadius: 50, style: .continuous)
                     .fill(Color.yellow.opacity(0.5))
@@ -50,7 +42,6 @@ struct CursorView: View {
                                 data.record.append(Float(data.intensity))
                             }
                         }
-                        //print(intensity)
                     })
             )
         }

@@ -13,7 +13,7 @@ struct LightsApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(data: LightData(intensity: 0.5))
+            ContentView()
         }
     }
 }
