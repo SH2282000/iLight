@@ -10,7 +10,18 @@ import SwiftUI
 struct MessageView: View {
     @State var data: MessageData
     var body: some View {
-        MessageFieldView(data: $data)
+        VStack {
+            ZStack {
+                //RoundedRectangle(cornerRadius: 20)
+                CameraView()
+            }
+            MessageFieldView(data: $data)
+                .overlay(
+                    Capsule(style: .continuous)
+                        .stroke(Color.gray, lineWidth: 2)
+                )
+                .padding()
+        }
     }
 }
 

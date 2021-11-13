@@ -14,6 +14,12 @@ struct MenuView: View {
             //playing (the record)
             Button(action: {
                 data.isPlaying.toggle()
+                data.isRecording = false
+                data.isAuto = false
+
+                if let timer = data.timer {
+                    timer.invalidate()
+                }
                 var i = 0
                 if data.isPlaying {
                     data.timer = Timer.scheduledTimer(withTimeInterval: 1/30, repeats: true) { timer in
@@ -25,10 +31,6 @@ struct MenuView: View {
                             i = 0
                         }
                     }
-                } else {
-                    if let timer = data.timer {
-                        timer.invalidate()
-                    }
                 }
             }) {
                 Label("Play", systemImage: data.isPlaying ? "play.circle.fill" : "play.circle")
@@ -38,6 +40,11 @@ struct MenuView: View {
             //recording
             Button(action: {
                 data.isRecording.toggle()
+                data.isPlaying = false
+                data.isAuto = false
+                if let timer = data.timer {
+                    timer.invalidate()
+                }
             }) {
                 Label("Record", systemImage: data.isRecording ? "record.circle.fill" : "record.circle")
                     .foregroundColor(.yellow)
@@ -46,16 +53,18 @@ struct MenuView: View {
             //automatic (sinus)
             Button(action: {
                 data.isAuto.toggle()
+                data.isRecording = false
+                data.isPlaying = false
+                
+                if let timer = data.timer {
+                    timer.invalidate()
+                }
                 var i = 0.0
                 if data.isAuto {
                     data.timer = Timer.scheduledTimer(withTimeInterval: 1/30, repeats: true) { timer in
                         i += 0.1
                         data.intensity = cos(i)/2 + 0.5
                         data.light.setBrightness(intensity: Float(data.intensity))
-                    }
-                } else {
-                    if let timer = data.timer {
-                        timer.invalidate()
                     }
                 }
             }) {

@@ -8,7 +8,7 @@
 import Foundation
 import AVFoundation
 
-class Light {
+class LightController {
     var intensity: Float
     var device: AVCaptureDevice?
     var input: AVCaptureDeviceInput?

@@ -18,7 +18,7 @@ struct LightData {
     var record: [Float] = []
 
     var height = 300.0
-    var light = Light(intensity: 0.5)
+    var light = LightController(intensity: 0.5)
     
     init(intensity: Double) {
         self.intensity = intensity
@@ -30,7 +30,7 @@ struct LightData {
         self.record = []
 
         self.height = 300.0
-        self.light = Light(intensity: Float(intensity))
+        self.light = LightController(intensity: Float(intensity))
     }
     
 }

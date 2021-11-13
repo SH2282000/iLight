@@ -17,14 +17,17 @@ struct MessageFieldView: View {
             }
             .padding()
         }
-        .background(Color.gray)
-        .cornerRadius(20)
-        .padding()
+        .font(.title2)
     }
 }
 
 struct MessageFieldView_Previews: PreviewProvider {
     static var previews: some View {
         MessageFieldView(data: .constant(MessageData()))
+            .overlay(
+                Capsule(style: .continuous)
+                    .stroke(Color.gray, lineWidth: 2)
+            )
+        
     }
 }
